@@ -25,14 +25,14 @@ public class Stylist{
     return contact;
   }
   public static List<Stylist> all() {
-      String sql = "SELECT id, name, gender, contact FROM Stylists";
+      String sql = "SELECT id, name, gender, contact FROM stylists";
       try(Connection con = DB.sql2o.open()) {
         return con.createQuery(sql).executeAndFetch(Stylist.class);
       }
   }
   public void save() {
    try(Connection con = DB.sql2o.open()) {
-     String sql = "INSERT INTO Stylists(name, gender, contact) VALUES (:name, :gender, :contact)";
+     String sql = "INSERT INTO stylists(name, gender, contact) VALUES (:name, :gender, :contact)";
      this.id = (int) con.createQuery(sql, true)
        .addParameter("name", this.name)
        .addParameter("gender", this.gender)
