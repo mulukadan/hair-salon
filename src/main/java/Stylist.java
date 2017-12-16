@@ -25,7 +25,7 @@ public class Stylist{
     return contact;
   }
   public static List<Stylist> all() {
-      String sql = "SELECT id, name, gender, contact FROM stylists";
+      String sql = "SELECT id, name, gender, contact FROM stylists ORDER BY id";
       try(Connection con = DB.sql2o.open()) {
         return con.createQuery(sql).executeAndFetch(Stylist.class);
       }
