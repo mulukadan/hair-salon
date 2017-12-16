@@ -10,16 +10,33 @@ border-radius: 0px;
 .jumbotron{
   height: 600px;
   //text-align: center;
-  margin-top: 30px;
+  margin-top: 10px;
   border-radius: 50px;
   background-image: url("/images/bb.jpg");
   background-repeat: no-repeat;
   /*background-size: cover;*/
   background-size: 100% auto;
-  padding-top: 2px;
+  padding-top: 1px;
 }
 .jumbotron h1{
   margin-top: 0px;
   padding-top: 0px;
   text-align: center;
+}
+h2{
+  text-align: center;
+}
+#main{
+    border-style: solid;
+    border-color: gray;
+}
+.transparent {
+  /*padding:20px;
+   width:710px;*/
+   position:relative;
+   background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+   background: rgba(204, 204, 204, 0.5);
+}
+hr{
+  margin: 0px;
 }

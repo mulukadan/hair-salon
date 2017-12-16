@@ -1,0 +1,55 @@
+<h2>Here is a List of All Stylists</h2>
+#if($stylists.size()>0)
+  <div class ="row" >
+   <div class="col-md-2">
+    ID
+   </div>
+   <div class="col-md-4">
+    NAME
+   </div>
+   <div class="col-md-2">
+      GENDER
+   </div>
+   <div class="col-md-2">
+      CONTACT
+   </div>
+   <div class="col-md-2">
+      ACTION
+   </div>
+  </div>
+  <hr>
+  <ul>
+      #foreach ($stylist in $stylists)
+       <div class ="row" >
+        <div class="col-md-2">
+          <li>$stylist.getId()</li>
+        </div>
+        <div class="col-md-4">
+          <a href="/stylists/$stylist.getId()">$stylist.getName()</a>
+        </div>
+        <div class="col-md-2">
+          $stylist.getGender()
+        </div>
+        <div class="col-md-2">
+          $stylist.getContact()
+        </div>
+        <div class="col-md-2">
+            <div class="col-md-2">
+               <img src="/images/e2.png" alt="Edit">
+            </div>
+            <div class="col-md-2">
+               <img src="/images/delete.png" alt="Edit">
+            </div>
+        </div>
+       </div>
+       <hr>
+
+      #end
+
+  </ul>
+  #else
+    <h3>NO STYLISTS</3>
+  #end
+
+<br>
+<a href="/stylists/new"><button type="button" class="btn btn-success">New Stylist</button></a>
