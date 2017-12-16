@@ -26,9 +26,17 @@ public class Client{
   public String getContact(){
     return contact;
   }
-  public int getStylist_Id(){
-    return stylist_id;
+  public Stylist getStylist() {
+    int id = stylist_id;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM stylists where id=:id";
+      Stylist stylist = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Stylist.class);
+      return stylist;
+    }
   }
+
   public static List<Client> all() {
       String sql = "SELECT id, name, gender, contact, stylist_id FROM clients";
       try(Connection con = DB.sql2o.open()) {
