@@ -9,7 +9,7 @@ public class Client{
   private int stylist_id;
 
   public Client(String name, String gender, String contact, int stylist_id){
-    this.name = name;
+    this.name = name.toUpperCase();
     this.gender = gender;
     this.contact = contact;
     this.stylist_id = stylist_id;
@@ -26,15 +26,21 @@ public class Client{
   public String getContact(){
     return contact;
   }
+
   public Stylist getStylist() {
     int id = stylist_id;
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM stylists where id=:id";
-      Stylist stylist = con.createQuery(sql)
-        .addParameter("id", id)
-        .executeAndFetchFirst(Stylist.class);
-      return stylist;
+    Stylist stylist;
+    if(id ==0){
+       stylist = new Stylist("--","","");
+    }else{
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "SELECT * FROM stylists where id=:id";
+         stylist = con.createQuery(sql)
+          .addParameter("id", id)
+          .executeAndFetchFirst(Stylist.class);
+         }
     }
+    return stylist;
   }
 
   public static List<Client> all() {
@@ -82,7 +88,5 @@ public class Client{
     con.createQuery(sql).addParameter("id", id).executeUpdate();
     }
   }
-
-
 
 }

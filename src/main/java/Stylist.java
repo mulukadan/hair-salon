@@ -8,7 +8,7 @@ public class Stylist{
   private String contact;
 
   public Stylist(String name, String gender, String contact){
-    this.name = name;
+    this.name = name.toUpperCase();
     this.gender = gender;
     this.contact = contact;
   }
@@ -64,6 +64,11 @@ public class Stylist{
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
     String sql = "DELETE FROM stylists WHERE id = :id;";
+    con.createQuery(sql).addParameter("id", id).executeUpdate();
+    }
+    //Assigning client_id to 0 for Clients allocated to the deleted sTYLIST
+    try(Connection con = DB.sql2o.open()) {
+    String sql = "UPDATE clients SET stylist_id = 0 WHERE stylist_id = :id;";
     con.createQuery(sql).addParameter("id", id).executeUpdate();
     }
   }

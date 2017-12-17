@@ -118,10 +118,22 @@ public class App {
         String name = request.queryParams("name");
         String gender = request.queryParams("gender");
         String contact = request.queryParams("contact");
-        stylist.update(name, gender, contact);
+        stylist.update(name.toUpperCase(), gender, contact);
         model.put("template", "templates/success.vtl");
         return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
+
+        //DELETING sTYLIST
+        post("/stylists/:id/delete", (request, response) -> {
+          Map<String, Object> model = new HashMap<String, Object>();
+          Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+          stylist.delete();
+          // String url
+          // String url = String.format("/categories/%d/tasks/%d", category.getId(), task.getId());
+          response.redirect("/stylists");
+          // model.put("template", "templates/success.vtl");
+          return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
 
 
   }
