@@ -21,11 +21,11 @@
    </div>
   </div>
   <hr>
-  <ul>
+  <ol>
       #foreach ($client in $clients)
        <div class ="row" >
         <div class="col-md-1">
-          <li>$client.getId()</li>
+          <li></li>
         </div>
         <div class="col-md-3">
           $client.getName()
@@ -51,10 +51,9 @@
         </div>
        </div>
        <hr>
-
       #end
 
-  </ul>
+  </ol>
   #else
     <h3>NO CLIENTS</3>
   #end

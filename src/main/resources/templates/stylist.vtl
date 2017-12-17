@@ -18,11 +18,11 @@
    </div>
   </div>
   <hr>
-  <ul>
+  <ol>
       #foreach($client in $stylist.getClients())
        <div class ="row" >
         <div class="col-md-2">
-          <li>$client.getId()</li>
+          <li></li>
         </div>
         <div class="col-md-4">
           <a href="/stylists/$stylist.getId()">$client.getName()</a>
@@ -31,7 +31,7 @@
           $client.getGender()
         </div>
         <div class="col-md-2">
-          $client.getContact() 
+          $client.getContact()
         </div>
         <div class="col-md-2">
             <div class="col-md-2">
@@ -46,7 +46,7 @@
        </div>
        <hr>
       #end
-  </ul>
+  </ol>
   #else
     <h3>NO CLIENTS ASSIGNED TO THIS STYLIST</h3>
   #end

@@ -44,7 +44,7 @@ public class Client{
   }
 
   public static List<Client> all() {
-      String sql = "SELECT id, name, gender, contact, stylist_id FROM clients ORDER BY id";
+      String sql = "SELECT id, name, gender, contact, stylist_id FROM clients ORDER BY name";
       try(Connection con = DB.sql2o.open()) {
         return con.createQuery(sql).executeAndFetch(Client.class);
       }
