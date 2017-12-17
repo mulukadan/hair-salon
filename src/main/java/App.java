@@ -135,6 +135,51 @@ public class App {
           return new ModelAndView(model, layout);
           }, new VelocityTemplateEngine());
 
+          get("/clients/:id/edit", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            Client client = Client.find(Integer.parseInt(request.params(":id")));
+            String checkMale="";
+            String checkFemale="";
+            if(client.getGender().equals("M")){
+              checkMale="checked=\"checked\"";
+            }else{
+              checkFemale="checked=\"checked\"";
+            }
+            model.put("checkMale", checkMale);
+            model.put("checkFemale", checkFemale);
+            model.put("client", client);
+            model.put("stylists", Stylist.all());
+            model.put("template", "templates/edit_Client_Form.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
+
+
+          //UPDATING CLIENT Details (FOR ALL)
+          post("/clients/:id/edit", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            Client client = Client.find(Integer.parseInt(request.params(":id")));
+            String name = request.queryParams("name");
+            String gender = request.queryParams("gender");
+            String contact = request.queryParams("contact");
+            int stylist_id = Integer.parseInt(request.queryParams("stylist_id"));
+            client.update(name.toUpperCase(), gender, contact, stylist_id);
+            model.put("template", "templates/success.vtl");
+            return new ModelAndView(model, layout);
+            }, new VelocityTemplateEngine());
+
+            //DELETING CLIENTS (FOR ALL)
+            post("/clients/:id/delete", (request, response) -> {
+              Map<String, Object> model = new HashMap<String, Object>();
+              Client client = Client.find(Integer.parseInt(request.params(":id")));
+              client.delete();
+              // String url
+              // String url = String.format("/categories/%d/tasks/%d", category.getId(), task.getId());
+              response.redirect("/clients");
+              // model.put("template", "templates/success.vtl");
+              return new ModelAndView(model, layout);
+              }, new VelocityTemplateEngine());
+
+
 
   }
 }

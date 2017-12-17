@@ -31,14 +31,16 @@
           $client.getGender()
         </div>
         <div class="col-md-2">
-          $client.getContact()
+          $client.getContact() 
         </div>
         <div class="col-md-2">
             <div class="col-md-2">
-               <img src="/images/e2.png" alt="Edit">
+               <a href="/clients/$client.getId()/edit"><img src="/images/e2.png" alt="Edit"></a>
             </div>
             <div class="col-md-2">
-               <img src="/images/delete.png" alt="Edit">
+               <form action="/clients/$client.getId()/delete" method="post">
+                <input type="image" src="/images/delete.png" alt="Delete">
+               </form>
             </div>
         </div>
        </div>

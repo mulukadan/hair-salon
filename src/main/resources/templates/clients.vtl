@@ -1,10 +1,10 @@
 <h2>Here is a List of All Clients</h2>
 #if($clients.size()>0)
   <div class ="row" >
-   <div class="col-md-1">
+   <div class="col-md-2">
     ID
    </div>
-   <div class="col-md-3">
+   <div class="col-md-2">
     NAME
    </div>
    <div class="col-md-2">
@@ -30,21 +30,23 @@
         <div class="col-md-3">
           $client.getName()
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
           $client.getGender()
         </div>
         <div class="col-md-2">
           $client.getContact()
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
           $client.getStylist().getName()
         </div>
         <div class="col-md-2">
             <div class="col-md-2">
-               <img src="/images/e2.png" alt="Edit">
+               <a href="/clients/$client.getId()/edit"><img src="/images/e2.png" alt="Edit"></a>
             </div>
             <div class="col-md-2">
-               <img src="/images/delete.png" alt="Edit">
+               <form action="/clients/$client.getId()/delete" method="post">
+                <input type="image" src="/images/delete.png" alt="Delete">
+               </form>
             </div>
         </div>
        </div>
