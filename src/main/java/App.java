@@ -97,6 +97,15 @@ public class App {
       get("/stylists/:id/edit", (request, response) -> {
         Map<String, Object> model = new HashMap<String, Object>();
         Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+        String checkMale="";
+        String checkFemale="";
+        if(stylist.getGender().equals("M")){
+          checkMale="checked=\"checked\"";
+        }else{
+          checkFemale="checked=\"checked\"";
+        }
+        model.put("checkMale", checkMale);
+        model.put("checkFemale", checkFemale);
         model.put("stylist", stylist);
         model.put("template", "templates/edit_Stylist_Form.vtl");
         return new ModelAndView(model, layout);
